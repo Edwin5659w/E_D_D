@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Creado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #003080;
+        }
+        .input-container {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            gap: 15px;
+        }
+        .input-field {
+            width: 90%;
+            padding: 12px;
+            font-size: 16px;
+            border: 2px solid gray;
+            border-radius: 5px;
+            text-align: center;
+            outline: none;
+        }
+        .button {
+            width: 90%;
+            padding: 12px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            text-align: center;
+        }
+        .button-gray {
+            background-color: gray;
+            color: white;
+        }
+        .button-gray:hover {
+            background-color: #505050;
+        }
+        .button-orange {
+            background-color: #ff7300;
+            color: white;
+        }
+        .button-orange:hover {
+            background-color: #ff5500;
+        }
+    </style>
+    <script>
+        function guardarNombreEquipo() {
+            let nombreEquipo = document.getElementById("nombre-input").value;
+            if (nombreEquipo.trim() !== "") {
+                localStorage.setItem("nombreEquipo", nombreEquipo);
+            } else {
+                alert("Por favor, ingresa un nombre válido para el equipo.");
+            }
+        }
+
+        function crearEquipo() {
+            guardarNombreEquipo(); 
+            location.href = "equipo_creado.html";
+        }
+
+        window.onload = function () {
+            let nombreEquipo = localStorage.getItem("nombreEquipo") || "";
+            document.getElementById("nombre-input").value = nombreEquipo;
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="input-container">
+            <input type="text" id="nombre-input" class="input-field" placeholder="Escribe el nombre del equipo">
+            <button class="button button-orange" onclick="crearEquipo()">CREAR</button>
+        </div>
+    </div>
+</body>
+</html>

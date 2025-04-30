@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <title>Equipo Guardado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            margin: 50px;
+        }
+        table {
+            width: 50%;
+            margin: auto;
+            border-collapse: collapse;
+        }
+        th, td {
+            border: 1px solid black;
+            padding: 10px;
+            text-align: center;
+        }
+        th {
+            background-color: #003080;
+            color: white;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            let equipo = JSON.parse(localStorage.getItem("equipoGuardado")) || [];
+
+            let tabla = document.getElementById("tabla-equipo");
+            if (equipo.length > 0) {
+                equipo.forEach((jugador, index) => {
+                    let fila = tabla.insertRow();
+                    let celdaNumero = fila.insertCell(0);
+                    let celdaNombre = fila.insertCell(1);
+
+                    celdaNumero.textContent = index + 1;
+                    celdaNombre.textContent = jugador;
+                });
+            } else {
+                document.getElementById("mensaje").textContent = "No hay jugadores registrados.";
+            }
+        });
+    </script>
+</head>
+<body>
+    <h2>Jugadores Registrados</h2>
+    <p id="mensaje"></p>
+    <table>
+        <thead>
+            <tr>
+                <th>#</th>
+                <th>Nombre del Jugador</th>
+            </tr>
+        </thead>
+        <tbody id="tabla-equipo"></tbody>
+    </table>
+</body>
+</html>

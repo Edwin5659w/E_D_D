@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo Creado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .image-container {
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+        .message {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 20px;
+            color: #003080;
+        }
+        .info-box {
+            background-color: gray;
+            color: white;
+            padding: 15px;
+            border-radius: 5px;
+            font-size: 16px;
+            font-weight: bold;
+            margin-bottom: 10px;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .button:hover {
+            background-color: #505050;
+        }
+    </style>
+    <script>
+        function regresar() {
+            location.href = "torneos.html";
+        }
+
+        function definirNombreEquipo() {
+            let nombreEquipo = prompt("Ingrese el nombre del equipo:");
+            if (nombreEquipo) {
+                localStorage.setItem("nombreEquipo", nombreEquipo);
+                document.getElementById("nombre-equipo").textContent = "Nombre del equipo: " + nombreEquipo;
+            }
+        }
+
+        window.onload = function () {
+            let categoria = localStorage.getItem("categoriaEquipo") || "Categoría no definida";
+            let nombreEquipo = localStorage.getItem("nombreEquipo") || "Nombre no asignado";
+
+            document.getElementById("categoria-equipo").textContent = "Categoría: " + categoria;
+            document.getElementById("nombre-equipo").textContent = "Nombre del equipo: " + nombreEquipo;
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="image-container">
+            <p class="message">EQUIPO CREADO EXITOSAMENTE</p>
+            <img src="https://cdn-icons-png.flaticon.com/128/7439/7439270.png" alt="Equipo Creado">
+        </div>
+        <div id="categoria-equipo" class="info-box">Categoría: BENJAMIN</div>
+        <div id="nombre-equipo" class="info-box">Nombre del equipo: Nombre no asignado</div>
+
+        <button class="button" onclick="regresar()">REGRESAR</button>
+    </div>
+</body>
+</html>

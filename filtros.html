@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi equipo - Vista general</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 300px;
+        }
+        h3 {
+            font-size: 24px;
+            font-weight: bold;
+        }
+        .modal button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            margin-top: 15px;
+            border: none;
+            border-radius: 15px;
+            cursor: pointer;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .btn-torneos {
+            background-color: #003080;
+            color: white;
+        }
+        .btn-calendario {
+            background-color: #003080;
+            color: white;
+        }
+        .btn-cancelar {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            background-color: gray;
+            color: black;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            margin-top: 45px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function abrirModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+        function cerrarModal() {
+            document.getElementById("modal").style.display = "none";
+            location.href = "vista_equipo.html"; // Redirige a vista_equipo.html
+        }
+        function irATorneos() {
+            location.href = "torneos.html"; // Redirige a torneos.html
+        }
+        function irACalendario() {
+            location.href = "calendario.html"; // Redirige a calendario.html
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h3>Seleccione una opción</h3>
+                <button class="btn-torneos" onclick="irATorneos()">Torneos</button>
+                <button class="btn-calendario" onclick="irACalendario()">Calendario</button>
+                <button class="btn-cancelar" onclick="cerrarModal()">Cancelar</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

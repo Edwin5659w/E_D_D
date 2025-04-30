@@ -1,0 +1,123 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Confirmación de Salida</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            flex-direction: column;
+        }
+        .container {
+            width: 300px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+            margin-top: 20px;
+        }
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            color: #001f5b;
+            margin-bottom: 15px;
+        }
+        .icon {
+            width: 50px;
+            height: 50px;
+        }
+        .modal {
+            display: none;
+            position: fixed;
+            left: 50%;
+            top: 50%;
+            transform: translate(-50%, -50%);
+            width: 280px;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+            text-align: center;
+        }
+        .modal p {
+            font-size: 18px;
+            font-weight: bold;
+            margin-bottom: 15px;
+        }
+        .buttons {
+            display: flex;
+            justify-content: space-between;
+        }
+        .button {
+            flex: 1;
+            padding: 10px;
+            font-size: 16px;
+            font-weight: bold;
+            border: none;
+            cursor: pointer;
+            border-radius: 5px;
+            margin: 5px;
+        }
+        .btn-cancel {
+            background-color: gray;
+            color: white;
+        }
+        .btn-cancel:hover {
+            background-color: #003080;
+        }
+        .btn-accept {
+            background-color: #ff7300;
+            color: white;
+        }
+        .btn-accept:hover {
+            background-color: #ff5500;
+        }
+        .btn-back {
+            background-color: gray;
+            color: white;
+        }
+        .btn-back:hover {
+            background-color: #505050;
+        }
+    </style>
+    <script>
+        function mostrarModal() {
+            document.getElementById("modal").style.display = "block";
+        }
+        function cerrarModal() {
+            document.getElementById("modal").style.display = "none";
+        }
+        function salirAplicacion() {
+            window.location.href = "inicio.html"; // Redirige a inicio.html
+        }
+        function regresar() {
+            window.location.href = "vista_equipo.html"; // Redirige a vista_equipo.html
+        }
+    </script>
+</head>
+<body>
+    <div class="header"></div>
+    <div class="container">
+        <div class="logo">Unicatolica</div>
+        <img src="https://cdn-icons-png.flaticon.com/128/2547/2547414.png" alt="Icono" class="icon">
+        <div></div>
+        <button class="button btn-back" onclick="regresar()">REGRESAR</button>
+        <button class="button btn-accept" onclick="mostrarModal()">SALIR</button>
+    </div>
+
+    <div id="modal" class="modal">
+        <p>Seguro que deseas salir de la aplicación</p>
+        <div class="buttons">
+            <button class="button btn-cancel" onclick="cerrarModal()">CANCELAR</button>
+            <button class="button btn-accept" onclick="salirAplicacion()">ACEPTAR</button>
+        </div>
+    </div>
+</body>
+</html>

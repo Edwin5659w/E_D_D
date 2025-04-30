@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo - Infantil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #001f5b;
+            padding: 20px;
+            border-radius: 20px;
+            color: white;
+            cursor: pointer; /* Indica que el usuario puede hacer clic */
+        }
+        .profile img {
+            width: 40px;
+        }
+        .icons-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .icon {
+            text-align: center;
+            background-color: gray;
+            padding: 15px;
+            border-radius: 10px;
+        }
+        .icon img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+        .icon p {
+            margin-top: 5px;
+            font-weight: bold;
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 10px;
+            background-color: #001f5b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+        }
+        .button:hover {
+            background-color: #003080;
+        }
+        .btn-exit {
+            background-color: #003080;
+        }
+        .btn-exit:hover {
+            background-color: #003080;
+        }
+        .btn-back {
+            background-color: #003080;
+        }
+    </style>
+    <script>
+        function regresar() {
+            location.href = "BE.html"; // Redirige a BE.html
+        }
+        
+        function salir() {
+            location.href = "vista_equipo.html"; // Redirige a vista_equipo.html
+        }
+
+        function irAFin() {
+            location.href = "fin.html"; // Redirige a fin.html
+        }
+
+        window.onload = cargarUsuario;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="profile" onclick="irAFin()"> <!-- Redirige al hacer clic en el perfil -->
+            <div></div>
+            <img src="https://cdn-icons-png.flaticon.com/128/847/847969.png" alt="Perfil">
+        </div>
+        <h2>BENJAMIN</h2>
+        <div class="icons-container">
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5029/5029644.png" alt="Benjamin">
+                <p>BENJAMIN</p>
+            </div>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5029/5029644.png" alt="Benjamin">
+                <p>BENJAMIN</p>
+            </div>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5029/5029644.png" alt="Benjamin">
+                <p>BEJAMIN</p>
+            </div>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5029/5029644.png" alt="Benjamin">
+                <p>BENJAMIN</p>
+            </div>
+        </div>
+        <button class="button btn-back" onclick="regresar()">REGRESAR</button>
+        <button class="button btn-exit" onclick="salir()">SALIR</button>
+    </div>
+</body>
+</html>

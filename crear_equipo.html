@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mi equipo - Vista general</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .modal-content {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            width: 250px;
+        }
+        .modal button {
+            display: block;
+            width: 100%;
+            padding: 20px;
+            margin-top: 10px;
+            border: none;
+            border-radius: 20px;
+            cursor: pointer;
+            font-weight: bold;
+        }
+        .btn-torneos {
+            background-color: #003080;
+            color: white;
+        }
+        .btn-calendario {
+            background-color: #003080;
+            color: white;
+        }
+        .btn-cancelar {
+            display: block;
+            width: 100%;
+            padding: 15px;
+            background-color: gray;
+            color: black;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 45px;
+            font-weight: bold;
+        }
+    </style>
+    <script>
+        function abrirModal() {
+            document.getElementById("modal").style.display = "flex";
+        }
+        function cerrarModal() {
+            document.getElementById("modal").style.display = "none";
+            location.href = "torneos.html"; // Redirige a torneos.html
+        }
+        function irABenjamin() {
+            location.href = "armar_benjamin.html"; // Redirige a armar_benjamin.html
+        }
+
+        function irAMini() {
+            location.href = "armar_mini.html"; // Redirige a armar_benjamin.html
+        }
+        function irAINFANTIL() {
+            location.href = "armar_infantil.html"; // Redirige a armar_benjamin.html
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div id="modal" class="modal">
+            <div class="modal-content">
+                <h3>Seleccionar Categoría</h3>
+                <button class="btn-torneos" onclick="irABenjamin()">BENJAMIN</button>
+                <button class="btn-torneos" onclick="irAINFANTIL()">INFANTIL</button>
+                <button class="btn-torneos" onclick="irAMini()">MINI</button>
+                <button class="btn-cancelar" onclick="cerrarModal()">CANCELAR</button>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

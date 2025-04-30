@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Equipo - Infantil</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #001f5b;
+            padding: 15px;
+            border-radius: 15px;
+            color: white;
+            cursor: pointer; /* Hace que el perfil sea clickeable */
+        }
+        .profile img {
+            width: 40px;
+        }
+        .icons-container {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 10px;
+            margin: 20px 0;
+        }
+        .icon {
+            text-align: center;
+            background-color: gray;
+            padding: 15px;
+            border-radius: 10px;
+            transition: background-color 0.3s ease;
+            cursor: pointer;
+        }
+        .icon:hover {
+            background-color: #505050;
+        }
+        .icon img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+        .icon p {
+            margin-top: 5px;
+            font-weight: bold;
+            background-color: white;
+            padding: 5px;
+            border-radius: 5px;
+            display: inline-block;
+        }
+        .button {
+            display: block;
+            width: 100%;
+            padding: 12px;
+            font-size: 16px;
+            background-color: #001f5b;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            margin-top: 15px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+        }
+        .button:hover {
+            background-color: #003080;
+        }
+        .button-orange {
+            background-color: #003080;
+        }
+        .button-orange:hover {
+            background-color: #003080;
+        }
+    </style>
+    <script>
+        function regresar() {
+            window.location.href = "IN.html"; // Redirige a IN.html
+        }
+        function salir() {
+            window.location.href = "vista_equipo.html"; // Redirige a vista_equipo.html
+        }
+        function irAFin() {
+            window.location.href = "fin.html"; // Redirige a fin.html
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="profile" onclick="irAFin()"> <!-- Ahora el perfil es clickeable -->
+            <div></div>
+            <img src="https://cdn-icons-png.flaticon.com/128/847/847969.png" alt="Perfil">
+        </div>
+        <h2>INFANTIL</h2>
+        <div class="icons-container">
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5822/5822602.png" alt="Mini">
+                <p>INFANTIL</p>
+            </div>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5822/5822602.png" alt="Mini">
+                <p>INFANTIL</p>
+            </div>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5822/5822602.png" alt="Mini">
+                <p>INFANTIL</p>
+            </div>
+            <div class="icon">
+                <img src="https://cdn-icons-png.flaticon.com/128/5822/5822602.png" alt="Mini">
+                <p>INFANTIL</p>
+            </div>
+        </div>
+        <button class="button" onclick="regresar()">REGRESAR</button>
+        <button class="button button-orange" onclick="salir()">SALIR</button>
+    </div>
+</body>
+</html>

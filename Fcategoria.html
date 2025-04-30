@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Seleccionar Categoría</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: white;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            font-size: 20px;
+            font-weight: bold;
+            color: #001f5b;
+            margin-bottom: 15px;
+        }
+        .button {
+            width: 100%;
+            padding: 15px;
+            margin: 10px 0;
+            font-size: 18px;
+            font-weight: bold;
+            border: none;
+            border-radius: 10px;
+            cursor: pointer;
+            background-color: #001f5b;
+            color: white;
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.1);
+        }
+        .button:hover {
+            background-color: #ddd;
+        }
+        .btn-gray {
+            background-color: gray;
+            color: black;
+        }
+        .btn-gray:hover {
+            background-color: #505050;
+        }
+    </style>
+    <script>
+        function seleccionarCategoria(categoria) {
+            localStorage.setItem("categoriaSeleccionada", categoria);
+            
+            let destino;
+            if (categoria === "Benjamin") {
+                destino = "BE.html";
+            } else if (categoria === "Infantil") {
+                destino = "IN.html";
+            } else if (categoria === "Mini") {
+                destino = "MI.html";
+            } else {
+                destino = "vista_equipo.html"; 
+            }
+
+            window.location.href = destino; // Se usa la variable destino en la redirección
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">Seleccionar Categoría</div>
+        <button class="button" onclick="seleccionarCategoria('Benjamin')">Benjamin</button>
+        <button class="button" onclick="seleccionarCategoria('Infantil')">Infantil</button>
+        <button class="button" onclick="seleccionarCategoria('Mini')">Mini</button>
+        <button class="button btn-gray" onclick="window.location.href='vista_equipo.html'">REGRESAR</button>
+    </div>
+</body>
+</html>

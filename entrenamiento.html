@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenamientos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background-color: #003080;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .date-box {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #ccc;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .month-select {
+            width: 100%;
+            padding: 8px;
+            margin-top: 10px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            font-weight: bold;
+        }
+        .calendar {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 5px;
+            text-align: center;
+            margin-top: 15px;
+        }
+        .day {
+            padding: 10px;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: white;
+            font-weight: bold;
+            border: 1px solid #ddd;
+        }
+        .day:hover {
+            background-color: #ddd;
+        }
+        .selected {
+            background-color: #007bff;
+            color: white;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .btn-create {
+            background-color: #ff7300;
+            color: white;
+        }
+        .btn-create:hover {
+            background-color: #ff5500;
+        }
+        .btn-gray {
+            background-color: gray;
+            color: white;
+        }
+        .btn-gray:hover {
+            background-color: #505050;
+        }
+        .btn-delete {
+            background-color:gray;
+            color: white;
+        }
+        .btn-delete:hover {
+            background-color: gray;
+        }
+    </style>
+    <script>
+        function generarCalendario() {
+            let calendario = document.getElementById("calendario");
+            let fechaSeleccionada = document.getElementById("fechaSeleccionada");
+            let mesSeleccionado = document.getElementById("mesSeleccionado").value;
+            let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+            let año = new Date().getFullYear();
+            let diasEnMes = new Date(año, mesSeleccionado, 0).getDate();
+            let fechasGuardadas = JSON.parse(localStorage.getItem("fechasEntrenamiento")) || [];
+
+            calendario.innerHTML = "";
+
+            for (let i = 1; i <= diasEnMes; i++) {
+                let dia = document.createElement("div");
+                dia.classList.add("day");
+                dia.innerText = i;
+
+                let fechaActual = `${i} de ${meses[mesSeleccionado - 1]}`;
+
+                if (fechasGuardadas.includes(fechaActual)) {
+                    dia.classList.add("selected");
+                }
+
+                dia.onclick = function () {
+                    if (!fechasGuardadas.includes(fechaActual)) {
+                        fechasGuardadas.push(fechaActual);
+                    }
+                    localStorage.setItem("fechasEntrenamiento", JSON.stringify(fechasGuardadas));
+                    fechaSeleccionada.innerText = fechaActual;
+                    dia.classList.add("selected");
+                };
+
+                calendario.appendChild(dia);
+            }
+        }
+
+        function eliminarFecha() {
+            let fecha = document.getElementById("fechaSeleccionada").innerText;
+            let fechasGuardadas = JSON.parse(localStorage.getItem("fechasEntrenamiento")) || [];
+            fechasGuardadas = fechasGuardadas.filter(f => f !== fecha);
+            localStorage.setItem("fechasEntrenamiento", JSON.stringify(fechasGuardadas));
+            document.getElementById("fechaSeleccionada").innerText = "Selecciona un día";
+            location.reload();
+        }
+
+        function guardarFecha() {
+            let fecha = document.getElementById("fechaSeleccionada").innerText;
+            localStorage.setItem("fechaEntrenamiento", fecha);
+            location.href = "entrenamiento_creado.html";
+        }
+
+        function irACalendario() {
+            location.href = "calendario.html";
+        }
+    </script>
+</head>
+<body onload="generarCalendario()">
+    <div class="container">
+        <div class="header">ENTRENAMIENTOS</div>
+        <div class="date-box" id="fechaSeleccionada">Selecciona un día</div>
+        <select id="mesSeleccionado" class="month-select" onchange="generarCalendario()">
+            <option value="1">Enero</option>
+            <option value="2">Febrero</option>
+            <option value="3">Marzo</option>
+            <option value="4">Abril</option>
+            <option value="5">Mayo</option>
+            <option value="6">Junio</option>
+            <option value="7">Julio</option>
+            <option value="8" selected>Agosto</option>
+            <option value="9">Septiembre</option>
+            <option value="10">Octubre</option>
+            <option value="11">Noviembre</option>
+            <option value="12">Diciembre</option>
+        </select>
+        <div class="calendar" id="calendario"></div>
+        <button class="button btn-create" onclick="guardarFecha()">CREAR</button>
+        <button class="button btn-gray" onclick="irACalendario()">REGRESAR</button>
+        <button class="button btn-delete" onclick="eliminarFecha()">ELIMINAR</button>
+    </div>
+</body>
+</html>

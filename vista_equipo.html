@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vista de Equipo</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;  
+        }
+        .container {
+            width: 300px;
+            background-color: white;
+            border-radius: 40px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 60px;
+            text-align: center;
+        }
+        .header {
+            background-color: #001f5b;
+            color: white;
+            border-radius: 10px 10px 0 0;
+        }
+        .profile {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            background-color: #001f5b;
+            padding: 10px;
+            border-radius: 10px;
+            cursor: pointer; /* Hace que el perfil sea clickeable */
+        }
+        .profile img {
+            width: 40px;
+        }
+        .profile span {
+            margin-right: auto;
+            color: white;
+        }
+        .section-title {
+            margin: 15px 0 10px;
+            font-weight: bold;
+            text-align: left; /* Se alinea a la izquierda */
+        }
+        .buttons {
+            display: flex;
+            gap: 10px;
+        }
+        .button {
+            flex: 1;
+            padding: 6px;
+            background-color: #001f5b;
+            color: white;
+            text-align: center;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+        .button:hover {
+            background-color: #003080;
+        }
+        .categories {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 10px;
+            margin-top: 15px;
+        }
+        .category {
+            text-align: center;
+            cursor: pointer;
+            background-color: gray;
+            padding: 20px;
+            border-radius: 20px;
+        }
+        .category img {
+            width: 50px;
+            height: 50px;
+            display: block;
+            margin: 0 auto;
+        }
+        .category p {
+            background-color: white; 
+            color: black;
+            padding: 5px;
+            border-radius: 10px;
+            display: block;
+            margin-top: 10px;
+            font-weight: bold;
+            height: 30px;
+        }
+        .category-infantil {
+            grid-column: 2 / 3; /* Ubica la categoría en el lado derecho */
+            grid-row: 2 / 3;
+        }
+    </style>
+    <script>
+        function redirigir(url) {
+            window.location.href = url;
+        }
+
+        window.onload = function() {
+            let usuarioGuardado = localStorage.getItem("usuario");
+            if (usuarioGuardado) {
+                document.getElementById("perfil-usuario").textContent = usuarioGuardado;
+            }
+        };
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header"></div>
+        <div class="profile" onclick="redirigir('fin.html')"> <!-- Redirige al usuario al hacer clic en el perfil -->
+            <span id="perfil-usuario">user@example.com</span>
+            <img src="https://cdn-icons-png.flaticon.com/128/847/847969.png" alt="Perfil">
+        </div>
+        <div class="section-title">Mi equipo</div>
+        <div class="section-title">Vista General</div>
+        <div class="buttons">
+            <div class="button" onclick="redirigir('filtros.html')">Filtros</div>
+            <div class="button" onclick="redirigir('Fcategoria.html')">Filtrar por categoría</div>
+        </div>
+        <div class="categories">
+            <div class="category" onclick="redirigir('benjamin.html')">
+                <img src="https://cdn-icons-png.flaticon.com/128/5029/5029644.png" alt="Benjamin">
+                <p>BENJAMIN</p>
+            </div>
+            <div class="category" onclick="redirigir('mini.html')">
+                <img src="https://cdn-icons-png.flaticon.com/128/3709/3709344.png" alt="Mini">
+                <p>MINI</p>
+            </div>
+            <div class="category category-infantil" onclick="redirigir('innfantil.html')">
+                <img src="https://cdn-icons-png.flaticon.com/128/5822/5822602.png" alt="Infantil">
+                <p>INFANTIL</p>
+            </div>
+        </div>
+    </div>
+</body>
+</html>

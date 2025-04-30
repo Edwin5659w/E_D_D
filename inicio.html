@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Inicio Aplicación</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+        .container {
+            background-color: white;
+            width: 300px;
+            border-radius: 20px;
+            box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+            text-align: center;
+            padding: 50px;
+        }
+        .welcome {
+            background-color: #001f5b;
+            color: white;
+            padding: 30px;
+            margin: 20px 0;
+            border-radius: 5px;
+        }
+        .icon img {
+            width: 50px;
+            height: 50px;
+            margin: 20px 0;
+        }
+        .form-group {
+            margin: 10px 0;
+            text-align: left; /* Alinea los elementos a la izquierda */
+        }
+        .form-group input {
+            width: 100%;
+            padding: 10px;
+            margin: 5px 0;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+        }
+        .input-invalid {
+            background-color: #ffdddd;
+            border: 2px solid red;
+        }
+        .error-message {
+            color: red;
+            font-size: 14px;
+            display: none;
+        }
+        .form-group button {
+            width: 100%;
+            padding: 20px;
+            background-color: #001f5b;
+            color: white;
+            border: none;
+            border-radius: 60px;
+            cursor: pointer;
+            font-size: 16px;
+            font-weight: bold;
+        }
+        .form-group button:hover {
+            background-color: #003080;
+        }
+        .register-link {
+            display: block;
+            text-align: left; /* Alineación a la izquierda */
+            font-size: 14px;
+            color: #001f5b;
+            font-weight: bold;
+            margin-top: 5px;
+            cursor: pointer;
+        }
+        .register-link:hover {
+            text-decoration: underline;
+        }
+    </style>
+    <script>
+        function validarYRedirigir() {
+            let usuario = document.getElementById("usuario");
+            let contraseña = document.getElementById("contraseña");
+            let errorMsg = document.getElementById("error-message");
+            const soloLetras = /^[A-Za-zÁÉÍÓÚáéíóúÑñ\s]+$/; 
+
+            if (usuario.value === "" || contraseña.value === "") {
+                alert("Por favor, ingresa tu usuario y contraseña.");
+                return;
+            }
+
+            if (!usuario.value.match(soloLetras)) {
+                usuario.classList.add("input-invalid");
+                errorMsg.style.display = "block";
+                return;
+            } else {
+                usuario.classList.remove("input-invalid");
+                errorMsg.style.display = "none";
+            }
+
+            localStorage.setItem("usuario", usuario.value);
+            window.location.href = "vista_equipo.html"; 
+        }
+
+        function redirigirARegistro() {
+            window.location.href = "registrar.html"; // Redirige a registrar.html
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="welcome">
+            <h2>BIENVENIDO</h2>
+        </div>
+        <div class="icon">
+            <img src="https://cdn-icons-png.flaticon.com/128/2547/2547414.png" alt="Icono de voleibol">
+        </div>
+        <div class="form-group">
+            <input type="text" id="usuario" placeholder="USUARIO">
+            <span id="error-message" class="error-message">Solo se permiten letras</span>
+        </div>
+        <div class="form-group">
+            <input type="password" id="contraseña" placeholder="CONTRASEÑA">
+            <span class="register-link" onclick="redirigirARegistro()">Registrarse</span>
+        </div>
+        <div class="form-group">
+            <button onclick="validarYRedirigir()">ACCEDER</button>
+        </div>
+    </div>
+</body>
+</html>

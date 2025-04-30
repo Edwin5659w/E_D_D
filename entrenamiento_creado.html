@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Entrenamiento Creado</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background-color: #003080;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 18px;
+            font-weight: bold;
+        }
+        .date-box {
+            margin-top: 15px;
+            font-size: 16px;
+            font-weight: bold;
+            background-color: #ccc;
+            padding: 10px;
+            border-radius: 10px;
+        }
+        .image-container {
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-top: 15px;
+        }
+        .button:hover {
+            background-color: #505050;
+        }
+    </style>
+    <script>
+        function cargarFechaEntrenamiento() {
+            let fecha = localStorage.getItem("fechaEntrenamiento");
+            let elementoFecha = document.getElementById("fechaSeleccionada");
+            
+            // Verifica si hay una fecha guardada, si no muestra un mensaje predeterminado
+            if (fecha) {
+                elementoFecha.innerText = "Fecha del entrenamiento: " + fecha;
+            } else {
+                elementoFecha.innerText = "Selecciona una fecha en entrenamientos";
+            }
+        }
+
+        function regresar() {
+            location.href = "calendario.html"; // Redirige a la página anterior
+        }
+
+        window.onload = cargarFechaEntrenamiento;
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">ENTRENAMIENTO CREADO EXITOSAMENTE</div>
+        <div class="date-box" id="fechaSeleccionada">Cargando fecha...</div>
+        <div class="image-container">
+            <img src="https://cdn-icons-png.flaticon.com/128/5029/5029624.png" alt="Entrenamiento Creado">
+        </div>
+        <button class="button" onclick="regresar()">REGRESAR</button>
+    </div>
+</body>
+</html>

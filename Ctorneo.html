@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Entrenamientos</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      background-color: #f4f4f4;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+    }
+    .container {
+      width: 320px;
+      background-color: white;
+      border-radius: 20px;
+      box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+      padding: 20px;
+      text-align: center;
+    }
+    .header {
+      background-color: #003080;
+      color: white;
+      padding: 15px;
+      border-radius: 10px;
+      font-size: 20px;
+      font-weight: bold;
+    }
+    .month-select {
+      width: 100%;
+      padding: 8px;
+      margin-top: 10px;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      font-weight: bold;
+    }
+    .calendar {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+      text-align: center;
+      margin-top: 15px;
+    }
+    .day {
+      padding: 10px;
+      border-radius: 5px;
+      cursor: pointer;
+      background-color: white;
+      font-weight: bold;
+      border: 1px solid #ddd;
+    }
+    .day:hover {
+      background-color: #ddd;
+    }
+    .selected {
+      background-color: #007bff;
+      color: white;
+    }
+    .modal {
+      display: none;
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+      text-align: center;
+      width: 300px;
+    }
+    .modal input {
+      width: 90%;
+      padding: 8px;
+      margin: 5px 0;
+      border-radius: 5px;
+      border: 1px solid #ddd;
+      text-align: center;
+    }
+    .button-container {
+      display: flex;
+      justify-content: space-between;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap;
+    }
+    .modal button {
+      flex: 1;
+      padding: 10px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+      font-size: 15px;
+      font-weight: bold;
+    }
+    .btn-back {
+      background-color: gray;
+      color: white;
+    }
+    .btn-back:hover {
+      background-color: #505050;
+    }
+    .btn-confirm {
+      background-color: #ff7300;
+      color: white;
+    }
+    .btn-confirm:hover {
+      background-color: #ff5500;
+    }
+    .btn-delete {
+      width: 100%;
+      margin-top: 20px;
+      padding: 10px;
+      background-color: gray;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+      display: none;
+    }
+    .btn-delete:hover {
+      background-color: #505050;
+    }
+    .btn-exit {
+      margin-top: 20px;
+      width: 100%;
+      padding: 10px;
+      background-color: #003080;
+      color: white;
+      border: none;
+      border-radius: 5px;
+      font-size: 16px;
+      font-weight: bold;
+      cursor: pointer;
+    }
+    .btn-exit:hover {
+      background-color: #002060;
+    }
+  </style>
+  <script>
+    let torneos = JSON.parse(localStorage.getItem("torneos")) || {};
+    let fechaSeleccionada = "";
+
+    function generarCalendario() {
+      let calendario = document.getElementById("calendario");
+      let mesSeleccionado = document.getElementById("mesSeleccionado").value;
+      let meses = ["Enero", "Febrero", "Marzo", "Abril", "Mayo", "Junio", "Julio", "Agosto", "Septiembre", "Octubre", "Noviembre", "Diciembre"];
+      let año = new Date().getFullYear();
+      let diasEnMes = new Date(año, mesSeleccionado, 0).getDate();
+
+      calendario.innerHTML = "";
+
+      for (let i = 1; i <= diasEnMes; i++) {
+        let dia = document.createElement("div");
+        dia.classList.add("day");
+        dia.innerText = i;
+
+        let fechaActual = `${i} de ${meses[mesSeleccionado - 1]}`;
+
+        if (torneos[fechaActual]) {
+          dia.classList.add("selected");
+        }
+
+        dia.onclick = function () {
+          fechaSeleccionada = fechaActual;
+          document.getElementById("fecha-input").value = fechaActual;
+          document.getElementById("modal").style.display = "block";
+
+          if (torneos[fechaActual]) {
+            document.getElementById("sede-input").value = torneos[fechaActual].sede;
+            document.getElementById("torneo-input").value = torneos[fechaActual].torneo;
+            document.getElementById("btn-delete").style.display = "block";
+          } else {
+            document.getElementById("sede-input").value = "";
+            document.getElementById("torneo-input").value = "";
+            document.getElementById("btn-delete").style.display = "none";
+          }
+        };
+
+        calendario.appendChild(dia);
+      }
+    }
+
+    function confirmarTorneo() {
+      let sede = document.getElementById("sede-input").value;
+      let fecha = document.getElementById("fecha-input").value;
+      let torneo = document.getElementById("torneo-input").value;
+
+      if (sede && fecha && torneo) {
+        torneos[fecha] = { sede: sede, torneo: torneo, inicio: fecha };
+        localStorage.setItem("torneos", JSON.stringify(torneos));
+        generarCalendario();
+        document.getElementById("modal").style.display = "none";
+      } else {
+        alert("Por favor, completa todos los campos.");
+      }
+    }
+
+    function eliminarTorneo() {
+      if (fechaSeleccionada && torneos[fechaSeleccionada]) {
+        delete torneos[fechaSeleccionada];
+        localStorage.setItem("torneos", JSON.stringify(torneos));
+        generarCalendario();
+        document.getElementById("modal").style.display = "none";
+      }
+    }
+
+    function regresarCtorneo() {
+      location.href = "Ctorneo.html";
+    }
+
+    function salirCalendario() {
+      location.href = "calendario.html";
+    }
+  </script>
+</head>
+<body onload="generarCalendario()">
+  <div class="container">
+    <div class="header">CREAR TORNEO</div>
+    <select id="mesSeleccionado" class="month-select" onchange="generarCalendario()">
+      <option value="1">Enero</option>
+      <option value="2">Febrero</option>
+      <option value="3">Marzo</option>
+      <option value="4">Abril</option>
+      <option value="5">Mayo</option>
+      <option value="6">Junio</option>
+      <option value="7">Julio</option>
+      <option value="8" selected>Agosto</option>
+      <option value="9">Septiembre</option>
+      <option value="10">Octubre</option>
+      <option value="11">Noviembre</option>
+      <option value="12">Diciembre</option>
+    </select>
+    <div class="calendar" id="calendario"></div>
+    <button id="btn-delete" class="btn-delete" onclick="eliminarTorneo()">Eliminar</button>
+    <button id="btn-exit" class="btn-exit" onclick="salirCalendario()">Salir</button>
+  </div>
+
+  <div id="modal" class="modal">
+    <input type="text" id="sede-input" placeholder="Sede">
+    <input type="text" id="fecha-input" readonly>
+    <input type="text" id="torneo-input" placeholder="Nombre del Torneo">
+    <div class="button-container">
+      <button class="btn-back" onclick="regresarCtorneo()">Regresar</button>
+      <button class="btn-confirm" onclick="confirmarTorneo()">Confirmar</button>
+    </div>
+  </div>
+</body>
+</html>
+
+
+
+
+

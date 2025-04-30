@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Torneos</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+        .container {
+            width: 320px;
+            background-color: white;
+            border-radius: 20px;
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.1);
+            padding: 20px;
+            text-align: center;
+        }
+        .header {
+            background-color: #001f5b;
+            color: white;
+            padding: 15px;
+            border-radius: 10px;
+            font-size: 20px;
+            font-weight: bold;
+        }
+        .image-container {
+            margin: 20px 0;
+        }
+        .image-container img {
+            width: 120px;
+            display: block;
+            margin: 0 auto;
+        }
+        .button {
+            width: 100%;
+            padding: 10px;
+            background-color: #ff7300;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+            margin-bottom: 10px;
+        }
+        .button:hover {
+            background-color: #ff5500;
+        }
+        .btn-gray {
+            width: 100%;
+            padding: 10px;
+            background-color: gray;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 16px;
+        }
+        .btn-gray:hover {
+            background-color: #505050;
+        }
+    </style>
+    <script>
+        function irACrearEquipo() {
+            location.href = "crear_equipo.html"; 
+        }
+        function regresar() {
+            location.href = "vista_equipo.html"; 
+        }
+    </script>
+</head>
+<body>
+    <div class="container">
+        <div class="header">TORNEOS</div>
+        <div class="image-container">
+            <img src="https://cdn-icons-png.flaticon.com/128/8622/8622834.png" alt="Trofeo">
+        </div>
+        <button class="button" onclick="irACrearEquipo()">Crear Equipo</button>
+        <button class="btn-gray" onclick="regresar()">Regresar</button>
+    </div>
+</body>
+</html>
